@@ -5,6 +5,9 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AssemblyName>clipevent</AssemblyName>
+        <PublishTrimmed>true</PublishTrimmed>
+        <PublishAot>true</PublishAot>
     </PropertyGroup>
 
     <ItemGroup>

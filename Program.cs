@@ -15,14 +15,14 @@ while (true)
     if (!primary.SequenceEqual(oldPrimary))
     {
         var data = new ClipboardEvent("primary", windowProperties, primary);
-        var json = JsonSerializer.Serialize(data);
+        var json = JsonSerializer.Serialize(data, SourceGenerationContext.Default.ClipboardEvent);
         Console.WriteLine(json);
     }
 
     if (!clipboard.SequenceEqual(oldClipboard))
     {
         var data = new ClipboardEvent("clipboard", windowProperties, clipboard);
-        var json = JsonSerializer.Serialize(data);
+        var json = JsonSerializer.Serialize(data, SourceGenerationContext.Default.ClipboardEvent);
         Console.WriteLine(json);
     }
 
