@@ -18,7 +18,7 @@ public static class XProp
 
         var output = process.StandardOutput.ReadToEnd();
 
-        var name = Regex.Match(output, "WM_NAME\\(STRING\\) = \"(.*)\"").Groups[1].Value;
+        var name = Regex.Match(output, "WM_NAME\\(\\w+\\) = \"(.*)\"").Groups[1].Value;
         var pid = Regex.Match(output, "_NET_WM_PID\\(CARDINAL\\) = (\\d+)").Groups[1].Value;
         var wmClass = Regex.Match(output, "WM_CLASS\\(STRING\\) = \"(.*)\", \"(.*)\"");
         var instance = wmClass.Groups[1].Value;
