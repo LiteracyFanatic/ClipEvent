@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ClipEvent;
 
-public record WindowProperties(int Id, int Pid, string Name, string Class);
+public record WindowProperties(int Id, int Pid, string Name, string Instance, string Class);
 
 public static class XProp
 {
@@ -20,8 +20,10 @@ public static class XProp
 
         var name = Regex.Match(output, "WM_NAME\\(STRING\\) = \"(.*)\"").Groups[1].Value;
         var pid = Regex.Match(output, "_NET_WM_PID\\(CARDINAL\\) = (\\d+)").Groups[1].Value;
-        var windowClass = Regex.Match(output, "WM_CLASS\\(STRING\\) = \"(.*)\"").Groups[1].Value;
+        var wmClass = Regex.Match(output, "WM_CLASS\\(STRING\\) = \"(.*)\", \"(.*)\"");
+        var instance = wmClass.Groups[1].Value;
+        var windowClass = wmClass.Groups[2].Value;
 
-        return new WindowProperties(windowId, int.Parse(pid), name, windowClass);
+        return new WindowProperties(windowId, int.Parse(pid), name, instance, windowClass);
     }
 }
